@@ -7,14 +7,17 @@ This work aims at making a simple, digital solution to keep synthetic records of
 The assumption is that a summary of every instance in **Reactions**, **Reagents** and **Users** is recorded on the go by the chemists in a commonly accessible excel file as the user-end (`/Data/lab.xlsx`).
 
 Excel sheet **Reactions**:
+<br>
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reaction.jpg" alt="alt text" width="1000" height="whatever">
 <br>
 
 Excel sheet **Reagents**:
+<br>
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reagent.jpg" alt="alt text" width="700" height="whatever">
 <br>
 
 Excel sheet **Users**:
+<br>
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_user.jpg" alt="alt text" width="700" height="whatever">
 <br>
 
