@@ -12,7 +12,8 @@ This work aims at making a simple, digital solution to keep synthetic records of
 
 The assumption is that a summary of every **reaction**, **reagent** and **user** is recorded on the go by the chemists in a commonly accessible excel file as the user-end (`/Data/lab.xlsx`).
 
-![Image of Yaktocat](https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_overvoew1.jpg)
+
+<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reaction.jpg" alt="alt text" width="1000" height="whatever">
 
 A collection of python codes (`main.py` and `writexl.py`) **extract, transform and load (ETL)** the data to a normalized MySQL Workbench database (`laboratory.sql`).
 
