@@ -1,21 +1,17 @@
-# Digital-Synthesis-Lab
+## Digital Synthesis Lab (From Excel's User Interface to MySQL Database )
 <br>
 
-```diff
-- [test text in red]
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
+
 This work aims at making a simple, digital solution to keep synthetic records of a large chemistry departmnet in a normalized database. 
 
 The assumption is that a summary of every **reaction**, **reagent** and **user** is recorded on the go by the chemists in a commonly accessible excel file as the user-end (`/Data/lab.xlsx`).
 
 
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reaction.jpg" alt="alt text" width="1000" height="whatever">
+<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reagent.jpg" alt="alt text" width="1000" height="whatever">
+<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_user.jpg" alt="alt text" width="1000" height="whatever">
 
-A collection of python codes (`main.py` and `writexl.py`) **extract, transform and load (ETL)** the data to a normalized MySQL Workbench database (`laboratory.sql`).
+A collection of python codes (`main.py` and `writexl.py`) **extract, transform and load (ETL)** the data to a normalized MySQL Workbench database (`laboratory.sql`) that contains 5 tables: `reaction`, `reagents`, `users`, `reactions_reagents` and `reactions_users` with the following schema:
 
 The data from the reactions, the reagents and the users that are collected in the Excel file (`lab.xlsx`) could be deleted on the go to keep a lean file size.
 
@@ -74,4 +70,14 @@ CREATE VIEW `reactions_overview` AS
                 `reactions`) AS `AVG_YIELD_PER_CENT`
     FROM
         `reactions_reagents` `rr`
+```
+
+
+
+```diff
+- [test text in red]
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
 ```
