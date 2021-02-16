@@ -38,8 +38,8 @@ The data from the reactions, the reagents and the users that are collected in th
 
 Apart from the ETL process, additional features like **Views** and **Functions** are defined for the database that allow for an overall statistical overview of the
 reactions, reagents and users. These calculations are performed in the database, making use of the entire dataset available from the beginning. The result of these calculations
-will be updated in the Excel file's **Overview** sheet as following:
-1. The Overview sheet shows an updated perspective of the number of reactions that use a certain chemical reagent or the number of people who use this reagent (View=`reagent_user`). This View is generated based on the following MySQL code:
+are updated and shown in the Excel file's **Overview** sheet, each time that new data come to the database. Three pieces of information are exclusively derived from the Views:
+1. The Overview sheet in the Excel file shows an updated total number of reactions that use a certain chemical reagent or the total number of people who use this reagent (View=`reagent_user`). This View is generated based on the following MySQL code:
 ```
 CREATE VIEW `reagent_use` AS
     SELECT 
@@ -105,6 +105,8 @@ The result of this simple analysis is shown in the `Overview` excel sheet as fol
 
 ### MySQL Function
 
+The database provides a function for the data analysts who will get acess to the MySQL database in order to calculate the differences between two dates, with the resulting 
+value being returned as a string in the form of YYYY-MM-DD.
 
 ```
 CREATE FUNCTION `format_date_diff`(date2 date, date1 date) RETURNS varchar(10) CHARSET utf8mb4
