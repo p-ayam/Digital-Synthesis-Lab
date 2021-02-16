@@ -8,17 +8,22 @@ The assumption is that a summary of every **reaction**, **reagent** and **user**
 
 
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reaction.jpg" alt="alt text" width="1000" height="whatever">
-<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reagent.jpg" alt="alt text" width="1000" height="whatever">
-<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_user.jpg" alt="alt text" width="1000" height="whatever">
+<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reagent.jpg" alt="alt text" width="700" height="whatever">
+<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_user.jpg" alt="alt text" width="700" height="whatever">
 
 A collection of python codes (`main.py` and `writexl.py`) **extract, transform and load (ETL)** the data to a normalized MySQL Workbench database (`laboratory.sql`) that contains 5 tables: `reaction`, `reagents`, `users`, `reactions_reagents` and `reactions_users` with the following schema:
 
+<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/schema.jpg" alt="alt text" width="700" height="whatever">
+
+
 The data from the reactions, the reagents and the users that are collected in the Excel file (`lab.xlsx`) could be deleted on the go to keep a lean file size.
+
+### MySQL View
 
 Apart from the ETL process, additional features like **Views** and **Functions** are defined for the database that allow for an overall statistical overview of the
 reactions, reagents and users. These calculations are performed in the database, making use of the entire dataset available from the beginning. The result of these calculations
 will be updated in the Excel file's **Overview** sheet as following:
-* The Overview sheet shows an updated perspective of the number of reactions that use a certain chemical reagent or the number of people who use this reagent (View=`reagent_user`). 
+1. The Overview sheet shows an updated perspective of the number of reactions that use a certain chemical reagent or the number of people who use this reagent (View=`reagent_user`). 
 ```
 CREATE VIEW `reagent_use` AS
     SELECT 
@@ -34,7 +39,11 @@ CREATE VIEW `reagent_use` AS
     GROUP BY `chem`.`Reagent_id`
     ORDER BY `chem`.`Reagent_id`
 ```
-* It also shows the number of the reactions that chemists have performed and the due dates in which they were carried out (View=`user_metrics`).
+The result of this simple analysis is shown in the `Overview` excel sheet as following:
+<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_overvoew1.jpg" alt="alt text" width="700" height="whatever">
+
+
+2. It also shows the number of the reactions that chemists have performed and the due dates in which they were carried out (View=`user_metrics`).
 ```
 CREATE VIEW `user_metrics` AS
     SELECT 
@@ -51,7 +60,10 @@ CREATE VIEW `user_metrics` AS
     GROUP BY `u`.`user_id`
     ORDER BY `u`.`user_id`
 ```
-* The Overview sheet also shows the average number of chemical reagents that have been used in the reactions, the average number of chemists working on the syntheses, as well as the average temperature and yeild of the reactions (View=`reactions_overview`).
+The result of this simple analysis is shown in the `Overview` excel sheet as following:
+<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_overvoew2.jpg" alt="alt text" width="700" height="whatever">
+
+3. The Overview sheet also shows the average number of chemical reagents that have been used in the reactions, the average number of chemists working on the syntheses, as well as the average temperature and yeild of the reactions (View=`reactions_overview`).
 ```
 CREATE VIEW `reactions_overview` AS
     SELECT 
@@ -71,8 +83,31 @@ CREATE VIEW `reactions_overview` AS
     FROM
         `reactions_reagents` `rr`
 ```
+The result of this simple analysis is shown in the `Overview` excel sheet as following:
+<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_overvoew3.jpg" alt="alt text" width="700" height="whatever">
+
+### MySQL Function
 
 
+```
+CREATE FUNCTION `format_date_diff`(date2 date, date1 date) RETURNS varchar(10) CHARSET utf8mb4
+    READS SQL DATA
+    DETERMINISTIC
+BEGIN
+	
+  DECLARE yyyy integer; # year number
+  DECLARE mm INTEGER;      # month number
+  DECLARE dd integer; # day number
+  DECLARE diff varchar(15);
+ 
+  set yyyy=floor(datediff(date2,date1)/365);
+  set mm=floor(mod(datediff(date2,date1),365)/30);
+  set dd=datediff(date2,date1)-365*yyyy-30*mm;
+  set diff=concat(yyyy,'-',mm,'-',dd);
+ 
+  RETURN diff;
+END
+```
 
 ```diff
 - [test text in red]
