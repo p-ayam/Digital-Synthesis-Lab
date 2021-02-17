@@ -9,7 +9,8 @@ The assumption is that a summary of every item in **Reactions**, **Reagents**, a
 
 Excel sheet **Reactions** filled with dummy data:
 <br>
-<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reaction.jpg" alt="alt text" width="900" height="whatever">
+<img src="https://github.com/p-ayam/images/blob/main/excel_reaction.jpg" alt="alt text" width="900" height="whatever">
+
 <br>
 The **Reactions** sheet contains two columns with the title "User" and "Reagent_id" that both contain
 comma-separated id-numbers from the corresponding chemists who conducted the reaction and the reagents used for the synthesis. The column "Temperature" contains values recorded in centigrades.
@@ -18,12 +19,12 @@ comma-separated id-numbers from the corresponding chemists who conducted the rea
 
 Excel sheet **Reagents** filled with dummy data:
 <br>
-<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reagent.jpg" alt="alt text" width="630" height="whatever">
+<img src="https://github.com/p-ayam/images/blob/main/excel_reagent.jpg" alt="alt text" width="630" height="whatever">
 <br>
 
 Excel sheet **Users** filled with sample dummy data:
 <br>
-<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_user.jpg" alt="alt text" width="630" height="whatever">
+<img src="https://github.com/p-ayam/images/blob/main/excel_user.jpg" alt="alt text" width="630" height="whatever">
 <br>
 
 
@@ -32,14 +33,14 @@ A collection of python codes (`main.py` and `writexl.py`) **extract, transform a
 **Reactions** Excel sheet ("User", "Reagent_id") get identified and saved separately in the database tables `reactions_users` and `reactions_reagents`, respectively. Also, the temperature is converted from Celsius to Kelvin. The transformed
 data are then loaded to a normalized MySQL Workbench database (`laboratory.sql`) that contains 5 tables: `reaction`, `reagents`, `users`, `reactions_reagents` and `reactions_users`, with the first three having a many-to-many relationship. The database schema is the following:
 
-<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/schema.jpg" alt="alt text" width="630" height="whatever">
+<img src="https://github.com/p-ayam/images/blob/main/schema.jpg" alt="alt text" width="630" height="whatever">
 
 
 The data from the reactions, the reagents and the users that are collected in the Excel file (`lab.xlsx`) could be deleted on the go to keep a lean file size.
 
 Additional features like View and Function are also defined for the database which will be covered in the following:
 <br>
-<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/schema%20on%20workbench.jpg" alt="alt text" width="200" height="whatever">
+<img src="https://github.com/p-ayam/images/blob/main/schema%20on%20workbench.jpg" alt="alt text" width="200" height="whatever">
 <br>
 
 ### View (MySQL)
@@ -65,7 +66,7 @@ CREATE VIEW `reagent_use` AS
 ```
 The result of this simple analysis is shown in the `Overview` excel sheet as follows:
 <br>
-<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_overvoew1.jpg" alt="alt text" width="400" height="whatever">
+<img src="https://github.com/p-ayam/images/blob/main/excel_overvoew1.jpg" alt="alt text" width="400" height="whatever">
 <br>
 
 2. It also shows the number of the reactions that chemists have performed and the due dates in which they were carried out (View=`user_metrics`). 
@@ -87,7 +88,7 @@ CREATE VIEW `user_metrics` AS
     ORDER BY `u`.`user_id`
 ```
 The result of this simple analysis is shown in the `Overview` excel sheet as following:
-<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_overvoew2.jpg" alt="alt text" width="700" height="whatever">
+<img src="https://github.com/p-ayam/images/blob/main/excel_overvoew2.jpg" alt="alt text" width="700" height="whatever">
 
 3. The Overview sheet also shows the average number of chemical reagents that have been used in the reactions, the average number of chemists working on the syntheses, as well as the average temperature and yield of the reactions (View=`reactions_overview`). This View is generated based on the following MySQL code:
 ```
@@ -110,7 +111,7 @@ CREATE VIEW `reactions_overview` AS
         `reactions_reagents` `rr`
 ```
 The result of this simple analysis is shown in the `Overview` excel sheet as follows:
-<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_overvoew3.jpg" alt="alt text" width="700" height="whatever">
+<img src="https://github.com/p-ayam/images/blob/main/excel_overvoew3.jpg" alt="alt text" width="700" height="whatever">
 
 ### Function (MySQL)
 
