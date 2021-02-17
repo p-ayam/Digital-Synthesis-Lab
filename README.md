@@ -6,7 +6,7 @@ This work aims at designing a simple, digital solution to keep synthetic records
 
 The assumption is that a summary of every item in **Reactions**, **Reagents** and **Users** is recorded on the go by the chemists in a commonly accessible excel file as the user-end (`/Data/lab.xlsx`).
 
-Excel sheet **Reactions**:
+Excel sheet **Reactions** filled with dummy data:
 <br>
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reaction.jpg" alt="alt text" width="900" height="whatever">
 <br>
@@ -15,12 +15,12 @@ comma-separated id-numbers from the corresponding chemists who conducted the rea
 
 <br>
 
-Excel sheet **Reagents**:
+Excel sheet **Reagents** filled with dummy data:
 <br>
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reagent.jpg" alt="alt text" width="630" height="whatever">
 <br>
 
-Excel sheet **Users**:
+Excel sheet **Users** filled with sample dummy data:
 <br>
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_user.jpg" alt="alt text" width="630" height="whatever">
 <br>
@@ -37,7 +37,7 @@ data are then loaded to a normalized MySQL Workbench database (`laboratory.sql`)
 The data from the reactions, the reagents and the users that are collected in the Excel file (`lab.xlsx`) could be deleted on the go to keep a lean file size.
 
 Additional features like View and Function are also defined for the database which will be covered in the following:
-<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/schema%20on%20workbench.jpg" alt="alt text" width="300" height="whatever">
+<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/schema%20on%20workbench.jpg" alt="alt text" width="200" height="whatever">
 
 
 ### View (MySQL)
