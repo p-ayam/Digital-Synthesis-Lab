@@ -8,7 +8,7 @@ import os
 from win32com.client import Dispatch
 import writexl #wrtite.py file in the directory
 
-################################## Establishing a connection to the mysql database##########################################################
+################################## Establishing a connection to the mysql database#####################################################################################
 username='username'
 password='password'
 host='localhost'
@@ -16,9 +16,12 @@ port='port_number'
 database_name='laboratory'
 engine = sqlalchemy.create_engine('mysql+pymysql://{}:{}@{}:{}/{}'.format(username,password,host,port,database_name))
 
-###############Excel sheets ('Reaction', 'Reagents', 'Users') to the database tables ('reactions','reagents','users' )#################################
-# # Describing few features from three of the tables in the database and their corresponding sheet source in the excel file
-# #db_table_dic= {
+###############Excel sheets ('Reaction', 'Reagents', 'Users') to the database tables ('reactions','reagents','users' )#################################################
+#Name and directory of the excel file
+filename=os.path.join(os.getcwd() , 'data\lab.xlsx')
+
+# Describing few features from three of the tables in the database and their corresponding sheet source in the excel file
+# db_table_dic= {
 #   'excel_sheet_name':
 #               [corresponding database table name, 
 #               max_col to be read from each excel sheet, 
@@ -36,12 +39,8 @@ db_table_dic = {
     'Users': 
         ['users', 4, ('User_id', 'Start_Date', 'First_Name', 'Family_Name')]}
 
-#Name and directory of the excel file
-filename=os.path.join(os.getcwd() , 'data\lab.xlsx')
-
-
-# iterating over the 3 excel sheets ('Reactions', 'Reagents', 'Users') to collect the data 
-# and feed it to the corresponding tables in the mysql database
+# Iterating over the 3 excel sheets ('Reactions', 'Reagents', 'Users') to collect the data 
+# and feed it to the corresponding tables in the MySQL Workbench database
 for sheet_name in ('Reactions', 'Reagents', 'Users'):
     
     db_table_name=db_table_dic[sheet_name][0]
@@ -49,9 +48,10 @@ for sheet_name in ('Reactions', 'Reagents', 'Users'):
     cols=db_table_dic[sheet_name][2]
     
     # For every excel sheet, there is a corresponding table in the database.
-    # Side note: There are more tables in the database, given that the data are normalized.
+    # Side note: There are more tables in the database, given that the data are normalized for many-to-many relationships among Reactions, Users and Reagents.
     # Here, the code reads the corresponding table and saves it in a dataframe called 'database'. 
     database = pd.read_sql_table(db_table_name, engine)
+    
     #because of the dealing with excel, all indices are set to start from 1
     database.index = np.arange(1, len(database)+1)
     
@@ -65,25 +65,27 @@ for sheet_name in ('Reactions', 'Reagents', 'Users'):
     
     data = list(data)[row_min:row_max]
 
-    #because of the work with excel, all indices are set to start from 1
+    # Because of the work with excel, all indices are set to start from 1
     idx = [r[0] for r in data]
 
-    #islice(iterable, start, stop, step)
-    data = (islice(r, col_min-1, col_max) for r in data)
+    #       islice(iterable,   start,        stop)  #col_min-1 has -1 for the reason that counting starts from 1 but python starts from 0.
+    data = (islice(r,          col_min-1,    col_max) for r in data)
             
     xlsx = pd.DataFrame(data, index=idx, columns=cols)
     
     if sheet_name=='Reactions':
-        # mysql database saved the temperature values in Kelvin
+        # MySQL database saves the temperature values in Kelvin
         xlsx['Temperature']=xlsx['Temperature']+273.15;
         xlsx['Synth_Protocol']=xlsx['Synth_Protocol'].str.upper().str.strip();
         
         # A data frame to extract the data from 'User_id','Reagent_id'
-        #extract will have 'Reaction_id' as its 1st column, 'User_id' as the 2nd and 'Reagent_id' as its 3rd.
+        # Dataframe 'extract' will have 'Reaction_id' as its 1st column, 'User_id' as the 2nd and 'Reagent_id' as its 3rd column.
         extract=xlsx.iloc[:,[0,6,7]] 
+        
         #making sure only the new rows of the excel that are not in the database are extracted.
         extract=extract[extract.iloc[:,0]> database.shape[0]].astype(str) 
-        # 'Reactions' will provide its first 6 columns to the database table 'reactions'
+        
+        # 'Reactions' will provide its first 6 columns to the database table 'reactions'. Remember, the rest went to the dataframe 'extract'.
         xlsx=xlsx.iloc[:,0:6]
         
     if sheet_name=='Reagents':
@@ -98,11 +100,11 @@ for sheet_name in ('Reactions', 'Reagents', 'Users'):
     xlsx_add=xlsx[xlsx.iloc[:,0]> database.shape[0]];
     xlsx_add.to_sql(con=engine, name=db_table_name, if_exists='append', index=False);
     
-    # delete the data, prepare it for the next loop
+    # delete the data, preparing them for the next loop
     del(wb,data, xlsx_add,xlsx)
 
-###############Excel sheets ('Reaction') has 2 columns 'User_id' and 'Reagent_id' that will be fed to to the database 
-# tables 'reactions_users' and 'reactions_reagents' by an intermediate dataframe called extract#################################
+############### Excel sheets ('Reaction') has 2 columns 'User_id' and 'Reagent_id' that will be fed to to the database 
+# tables 'reactions_users' and 'reactions_reagents' by an intermediate dataframe called 'extract' ####################################################################
 
 # Preoparing the iterations over the 'extract' dataframe to fill up the 
 # tables 'reactions_users' and 'reactions_reagents' in the mysql database.
@@ -111,25 +113,26 @@ column_dic= {
     'db_column':[('Reaction_id', 'User_id'), ('Reaction_id', 'Reagent_id')],
     'db_table_name':['reactions_users', 'reactions_reagents']}
 
-# Along the range of all the rows in the extract:
-# filling up the first and second columns in reaction_reagent and reaction_user tables:
-for counter in (
-                1,
-                2,
-               ): #First, we will fil up the the first column and then the second column
-    a,b=[],[] #a will read the values from the Reaction_id, b will read the values either from User_id or Reagent_id
-    for i in range(extract.shape[0]):  #range (0,15)
-        
-        for j in range( len ( extract.iloc[ i , counter] .split(","))): #range (0,2)
-            #extracting the first column = reaction_id
+# Iteration along all the rows in the dataframe 'extract':
+# filling up the first and second columns in the 'reaction_reagent' and 'reaction_user' tables of the MySQL database:
+for counter in (1, 2): #First, we will fil up the the first column and then the second column using 'counter'
+    a,b=[],[] #[a] will read the values from the 'Reaction_id', [b] will read the values from 'User_id' and 'Reagent_id'
+    for i in range(extract.shape[0]):  # i represents the number of iteration along all the rows in the dataframe 'extract'
+        for j in range( len ( extract.iloc[ i , counter] .split(","))): # j represents the iterations in each cell, depending on how many numbers are comma-separated
+            # Extracting the first column in the row = 'reaction_id' (.iloc[i,0])
             a.append(extract.iloc[i,0])
-            #extracting the second column which is either User_id or Reagent_id
+            #extracting the second column which is either 'User_id' or 'Reagent_id'. 'counter' will take care of the 1st and 2nd columns of 'extract'
             b.append( extract.iloc [ i , counter ].split(",")[j])
+    # Pouring [a] and [b] in a dataframe called df
     df=pd.DataFrame(list(zip(a, b)), columns =column_dic['db_column'][counter-1])
+    
+    # Writing df to the MySQL database
     df.to_sql(con=engine, name=column_dic['db_table_name'][counter-1], if_exists='append', index=False)
+    
+    # Deleting df, preparing it for the next loop
     del(df)
 
-###################Making Use of Views (Defined in MySQL Workbench) to fill up Overview sheet in the exel file##########################
+################### Making Use of Views (Defined in MySQL Workbench) to fill up Overview sheet in the exel file ######################################################
 # reagent_use :
 # Shows
 # 1) how many people have used each chemical and
