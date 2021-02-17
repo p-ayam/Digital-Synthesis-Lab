@@ -63,8 +63,9 @@ CREATE VIEW `reagent_use` AS
     ORDER BY `chem`.`Reagent_id`
 ```
 The result of this simple analysis is shown in the `Overview` excel sheet as following:
+<br>
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_overvoew1.jpg" alt="alt text" width="400" height="whatever">
-
+<br>
 
 2. It also shows the number of the reactions that chemists have performed and the due dates in which they were carried out (View=`user_metrics`). 
 This View is generated based on the following MySQL code:
