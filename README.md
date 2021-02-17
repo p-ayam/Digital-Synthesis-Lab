@@ -1,3 +1,4 @@
+
 ## Digital Synthesis Lab: From Excel's User Interface to MySQL Database 
 <br>
 
@@ -141,5 +142,9 @@ END
 + text in green
 ! text in orange
 # text in gray
+% test
+* test
+$ test
+= test
 @@ text in purple (and bold)@@
 ```
