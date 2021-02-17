@@ -87,7 +87,7 @@ CREATE VIEW `user_metrics` AS
 The result of this simple analysis is shown in the `Overview` excel sheet as following:
 <img src="https://github.com/p-ayam/images/blob/main/excel_overvoew2.jpg" alt="alt text" width="700" height="whatever">
 
-**c)** The Overview sheet also shows the average number of chemical reagents that have been used in the reactions, the average number of chemists working on the syntheses, as well as the average temperature and yield of the reactions (View=`reactions_overview`). This View is generated based on the following MySQL code:
+**c)** The Overview sheet also shows the average number of chemical reagents that have been used in the reactions, the average overall number of chemists working on the syntheses, as well as the average temperature and yield of the reactions (View=`reactions_overview`). This View is generated based on the following MySQL code:
 ```
 CREATE VIEW `reactions_overview` AS
     SELECT 
