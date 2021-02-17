@@ -3,9 +3,10 @@
 <br>
 
 
-This work aims at designing a simple, digital solution to keep synthetic records of a synthetic chemistry laboratory in a normalized database. 
+This work aims at designing a simple, digital solution to keep the workflow of a synthetic chemistry laboratory in a normalized MySQL database, using Excel sheets as the user end, and Python libraries for extraction, transformation and loading (ETL) of the data.
 
-The assumption is that a summary of every item in **Reactions**, **Reagents**, and **Users** is recorded on the go by the chemists in a commonly accessible excel file as the user-end (`/Data/lab.xlsx`).
+### 1. Excel Files as the User End
+The assumption is that a summary of every item in the list of **Reactions**, **Reagents**, and **Users** is recorded -on the go- by the chemists in a commonly accessible Excel file (`/Data/lab.xlsx`) like the following format (the file is equipped with data validation features to avoid the intake of faulty data):
 
 Excel sheet **Reactions** filled with dummy data:
 <br>
@@ -28,26 +29,26 @@ Excel sheet **Users** filled with sample dummy data:
 <br>
 
 
-
+### 2. ETL Process and MySQL Database
 A collection of python codes (`main.py` and `writexl.py`) **extract, transform and load (ETL)** the data between the Excel file and the MySQL database. In this process, the comma-separated values in the two columns of the
 **Reactions** Excel sheet ("User", "Reagent_id") get identified and saved separately in the database tables `reactions_users` and `reactions_reagents`, respectively. Also, the temperature is converted from Celsius to Kelvin. The transformed
-data are then loaded to a normalized MySQL Workbench database (`laboratory.sql`) that contains 5 tables: `reaction`, `reagents`, `users`, `reactions_reagents` and `reactions_users`, with the first three having a many-to-many relationship. The database schema is the following:
+data are then loaded to a normalized MySQL Workbench database (`laboratory.sql`) that contains 5 tables: `reaction`, `reagents`, `users`, `reactions_reagents`, `reactions_users`, with the first three having a many-to-many relationship. The database schema is the following:
 
 <img src="https://github.com/p-ayam/images/blob/main/schema.jpg" alt="alt text" width="630" height="whatever">
 
 
 The data from the reactions, the reagents and the users that are collected in the Excel file (`lab.xlsx`) could be deleted on the go to keep a lean file size.
 
-Additional features like View and Function are also defined for the database which will be covered in the following:
+Additional features like View and Function are also defined for the database which will be discussed in the following:
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/schema%20on%20workbench.jpg" alt="alt text" width="200" height="whatever">
 <br>
 
-### View (MySQL)
+#### 2.1. View (MySQL)
 
 Apart from the ETL process, additional features like **Views** and **Functions** are defined for the database that allows for an overall statistical overview of the
 reactions, reagents and users. These calculations are performed in the database, making use of the entire dataset available from the beginning. The results of these calculations
-are updated and shown in the Excel file's **Overview** sheet, each time that new data come to the database (refer to the `main.py` file where Making Use of Views is discussed). Three pieces of information are exclusively derived from the Views:
+are updated and shown in the Excel file's **Overview** sheet, each time that new data come to the database (refer to the `main.py` file where _Making Use of Views_ is discussed). Three pieces of information are exclusively derived from the Views:
 1. The Overview sheet in the Excel file shows an updated total number of reactions that use a certain chemical reagent or the total number of people who use this reagent (View=`reagent_user`). This View is generated based on the following MySQL code:
 ```
 CREATE VIEW `reagent_use` AS
@@ -113,7 +114,7 @@ CREATE VIEW `reactions_overview` AS
 The result of this simple analysis is shown in the `Overview` excel sheet as follows:
 <img src="https://github.com/p-ayam/images/blob/main/excel_overvoew3.jpg" alt="alt text" width="700" height="whatever">
 
-### Function (MySQL)
+#### 2.2. Function (MySQL)
 
 The database provides a function for the data analysts who will get access to the MySQL database in order to calculate the differences between two dates, two dates (date2 > date1) with the resulting 
 value returned as a string in the form of YYYY-MM-DD.
