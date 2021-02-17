@@ -1,7 +1,7 @@
 # The function is a slightly modified version of the one presented here:
 # https://stackoverflow.com/questions/60372238/updating-excel-sheet-with-pandas-without-overwriting-the-file
-
-
+# Here, 'first_col' is an added feature that together with 'startrow' helps defining the exact cell in the Excel sheet where the upper left corner of the Pandas 
+# dataframe should be written in.
 
 def append_df_to_excel(filename, df, sheet_name, startrow, first_col,
                        truncate_sheet=False,
