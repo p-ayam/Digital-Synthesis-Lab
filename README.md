@@ -11,7 +11,7 @@ Excel sheet **Reactions** filled with dummy data:
 <br>
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reaction.jpg" alt="alt text" width="900" height="whatever">
 <br>
-T he**Reactions** sheet contains two columns with the title "User" and "Reagent_id" that both contain
+The **Reactions** sheet contains two columns with the title "User" and "Reagent_id" that both contain
 comma-separated id-numbers from the corresponding chemists who conducted the reaction and the reagents used for the synthesis. The column "Temperature" contains values recorded in centigrades.
 
 <br>
