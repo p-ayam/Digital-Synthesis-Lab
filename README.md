@@ -2,13 +2,17 @@
 <br>
 
 
-This work aims at making a simple, digital solution to keep synthetic records of a synthetic chemistry laboratory in a normalized database. 
+This work aims at designing a simple, digital solution to keep synthetic records of a synthetic chemistry laboratory in a normalized database. 
 
 The assumption is that a summary of every item in **Reactions**, **Reagents** and **Users** is recorded on the go by the chemists in a commonly accessible excel file as the user-end (`/Data/lab.xlsx`).
 
 Excel sheet **Reactions**:
 <br>
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_reaction.jpg" alt="alt text" width="1000" height="whatever">
+<br>
+**Reactions** sheet contain two columns with the title "User" and "Reagent_id" that both contain
+comma-separated id-numbers from the corresponding chemists who conducted the reaction and the reagents used for the synthesis. The column "Temperature" contains values recorded in centigrades.
+
 <br>
 
 Excel sheet **Reagents**:
@@ -21,8 +25,7 @@ Excel sheet **Users**:
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_user.jpg" alt="alt text" width="700" height="whatever">
 <br>
 
-It is worth noting that the data recorded in the excel sheet **Reactions** contain two columns with the title "User" and "Reagent_id" that both contain
-comma-separated id-numbers from the corresponding chemists who conducted the reaction and the reagents used for the synthesis. The column "Temperature" contains values recorded in centigrades.
+
 
 A collection of python codes (`main.py` and `writexl.py`) **extract, transform and load (ETL)** the data between the Excel file and the MySQL database. In this process, the comma-separated values in the two columns of the
 **Reactions** Excel sheet ("User", "Reagent_id") get identified and saved separately in the database tables `reactions_users` and `reactions_reagents`, respectively. Also, the temperature is converted from Celsius to Kelvins. The transformed
