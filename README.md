@@ -112,7 +112,7 @@ The result of this simple analysis is shown in the `Overview` excel sheet as fol
 
 ### 2.2. Function (MySQL)
 
-The database provides a function for the data analysts who will get access to the MySQL database in order to calculate the differences between two dates, two dates (date2 > date1) with the resulting 
+The database provides a function like `format_date_diff`(date2 date, date1 date)` for the data analysts who will get access to the MySQL database in order to calculate the differences between two dates, two dates (date2 > date1) with the resulting 
 value returned as a string in the form of YYYY-MM-DD.
 
 ```
