@@ -11,8 +11,8 @@ The assumption is that a summary of every item in the list of **Reactions**, **R
 Excel sheet **Reactions** filled with dummy data:
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/excel_reaction.jpg" alt="alt text" width="900" height="whatever">
-
 <br>
+
 The **Reactions** sheet contains two columns with the title "User" and "Reagent_id" that both contain
 comma-separated id-numbers from the corresponding chemists who conducted the reaction and the reagents used for the synthesis. The column "Temperature" contains values recorded in centigrades.
 
