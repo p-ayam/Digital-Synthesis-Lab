@@ -34,7 +34,7 @@ data are then loaded to a normalized MySQL Workbench database (`laboratory.sql`)
 
 The data from the reactions, the reagents and the users that are collected in the Excel file (`lab.xlsx`) could be deleted on the go to keep a lean file size.
 
-### MySQL View
+### View (MySQL)
 
 Apart from the ETL process, additional features like **Views** and **Functions** are defined for the database that allow for an overall statistical overview of the
 reactions, reagents and users. These calculations are performed in the database, making use of the entire dataset available from the beginning. The result of these calculations
@@ -103,10 +103,10 @@ CREATE VIEW `reactions_overview` AS
 The result of this simple analysis is shown in the `Overview` excel sheet as following:
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_overvoew3.jpg" alt="alt text" width="700" height="whatever">
 
-### MySQL Function
+### Function (MySQL)
 
-The database provides a function for the data analysts who will get acess to the MySQL database in order to calculate the differences between two dates, with the resulting 
-value being returned as a string in the form of YYYY-MM-DD.
+The database provides a function for the data analysts who will get acess to the MySQL database in order to calculate the differences between two dates, two dates (date2 > date1) with the resulting 
+value returned as a string in the form of YYYY-MM-DD.
 
 ```
 CREATE FUNCTION `format_date_diff`(date2 date, date1 date) RETURNS varchar(10) CHARSET utf8mb4
