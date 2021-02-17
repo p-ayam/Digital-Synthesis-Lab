@@ -37,8 +37,9 @@ data are then loaded to a normalized MySQL Workbench database (`laboratory.sql`)
 The data from the reactions, the reagents and the users that are collected in the Excel file (`lab.xlsx`) could be deleted on the go to keep a lean file size.
 
 Additional features like View and Function are also defined for the database which will be covered in the following:
+<br>
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/schema%20on%20workbench.jpg" alt="alt text" width="200" height="whatever">
-
+<br>
 
 ### View (MySQL)
 
@@ -62,7 +63,7 @@ CREATE VIEW `reagent_use` AS
     ORDER BY `chem`.`Reagent_id`
 ```
 The result of this simple analysis is shown in the `Overview` excel sheet as following:
-<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_overvoew1.jpg" alt="alt text" width="700" height="whatever">
+<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_overvoew1.jpg" alt="alt text" width="630" height="whatever">
 
 
 2. It also shows the number of the reactions that chemists have performed and the due dates in which they were carried out (View=`user_metrics`). 
