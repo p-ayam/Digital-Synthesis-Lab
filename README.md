@@ -49,7 +49,7 @@ Additional features like View and Function are also defined for the database whi
 Apart from the ETL process, additional features like **Views** and **Functions** are defined for the database that allows for an overall statistical overview of the
 reactions, reagents and users. These calculations are performed in the database, making use of the entire dataset available from the beginning. The results of these calculations
 are updated and shown in the Excel file's **Overview** sheet, each time that new data come to the database (refer to the `main.py` file where _Making Use of Views_ is discussed). Three pieces of information are exclusively derived from the Views:
-	a) The Overview sheet in the Excel file shows an updated total number of reactions that use a certain chemical reagent or the total number of people who use this reagent (View=`reagent_user`). This View is generated based on the following MySQL code:
+**a)** The Overview sheet in the Excel file shows an updated total number of reactions that use a certain chemical reagent or the total number of people who use this reagent (View=`reagent_user`). This View is generated based on the following MySQL code:
 ```
 CREATE VIEW `reagent_use` AS
     SELECT 
@@ -70,7 +70,7 @@ The result of this simple analysis is shown in the `Overview` excel sheet as fol
 <img src="https://github.com/p-ayam/images/blob/main/excel_overvoew1.jpg" alt="alt text" width="400" height="whatever">
 <br>
 
-	b) It also shows the number of the reactions that chemists have performed and the due dates in which they were carried out (View=`user_metrics`). 
+**b)** It also shows the number of the reactions that chemists have performed and the due dates in which they were carried out (View=`user_metrics`). 
 This View is generated based on the following MySQL code:
 ```
 CREATE VIEW `user_metrics` AS
@@ -91,7 +91,7 @@ CREATE VIEW `user_metrics` AS
 The result of this simple analysis is shown in the `Overview` excel sheet as following:
 <img src="https://github.com/p-ayam/images/blob/main/excel_overvoew2.jpg" alt="alt text" width="700" height="whatever">
 
-	c) The Overview sheet also shows the average number of chemical reagents that have been used in the reactions, the average number of chemists working on the syntheses, as well as the average temperature and yield of the reactions (View=`reactions_overview`). This View is generated based on the following MySQL code:
+**c)** The Overview sheet also shows the average number of chemical reagents that have been used in the reactions, the average number of chemists working on the syntheses, as well as the average temperature and yield of the reactions (View=`reactions_overview`). This View is generated based on the following MySQL code:
 ```
 CREATE VIEW `reactions_overview` AS
     SELECT 
