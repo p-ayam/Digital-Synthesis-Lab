@@ -21,18 +21,21 @@ Excel sheet **Users**:
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/excel_user.jpg" alt="alt text" width="700" height="whatever">
 <br>
 
-It is worth noting that the data recorded in the excel sheet **Reactions** contain two columns with the title User and Reagent_id that both contain
-comma-separated id-numbers from the corresponding chemists who conducted the reaction and the reagents used for the synthesis. Temperature is also recorded by the chemists in 
-centigrades.
+It is worth noting that the data recorded in the excel sheet **Reactions** contain two columns with the title "User" and "Reagent_id" that both contain
+comma-separated id-numbers from the corresponding chemists who conducted the reaction and the reagents used for the synthesis. The column "Temperature" contains values recorded in centigrades.
 
 A collection of python codes (`main.py` and `writexl.py`) **extract, transform and load (ETL)** the data between the Excel file and the MySQL database. In this process, the comma-separated values in the two columns of the
-**Reactions** Excel sheet (User, Reagent_id) get identified and saved separately in the database tables `reactions_users` and `reactions_reagents`, respectively. Also, the temperature is converted from Celsius to Kelvins. The transformed
+**Reactions** Excel sheet ("User", "Reagent_id") get identified and saved separately in the database tables `reactions_users` and `reactions_reagents`, respectively. Also, the temperature is converted from Celsius to Kelvins. The transformed
 data are then loaded to a normalized MySQL Workbench database (`laboratory.sql`) that contains 5 tables: `reaction`, `reagents`, `users`, `reactions_reagents` and `reactions_users`, with the first three having a many-to-many relationship. Database schema is the following:
 
 <img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/schema.jpg" alt="alt text" width="700" height="whatever">
 
 
 The data from the reactions, the reagents and the users that are collected in the Excel file (`lab.xlsx`) could be deleted on the go to keep a lean file size.
+
+Additional features like View and Function are also defined for the database which will be covered in the following:
+<img src="https://github.com/p-ayam/Digital-Synthesis-Lab/blob/master/pictures/schema%20on%20workbench.jpg" alt="alt text" width="300" height="whatever">
+
 
 ### View (MySQL)
 
