@@ -66,7 +66,7 @@ The result of this simple analysis is shown in the `Overview` excel sheet as fol
 <img src="https://github.com/p-ayam/images/blob/main/excel_overvoew1.jpg" alt="alt text" width="400" height="whatever">
 <br>
 
-**b)** It also shows the number of the reactions that chemists have performed and the due dates in which they were carried out (View=`user_metrics`). 
+**b)** It also shows the number of the reactions that chemists have performed and the dates in which the reactions were carried out (View=`user_metrics`). 
 This View is generated based on the following MySQL code:
 ```
 CREATE VIEW `user_metrics` AS
