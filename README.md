@@ -45,6 +45,7 @@ Additional features like View and Function are also defined for the database whi
 Apart from the ETL process, additional features like **Views** and **Functions** are defined for the database that allows for an overall statistical overview of the
 reactions, reagents and users. These calculations are performed in the database, making use of the entire dataset available from the beginning. The results of these calculations
 are updated and shown in the Excel file's **Overview** sheet, each time that new data come to the database (refer to the `main.py` file where _Making Use of Views_ is discussed). Three pieces of information are exclusively derived from the Views:
+
 **a)** The Overview sheet in the Excel file shows an updated total number of reactions that use a certain chemical reagent or the total number of people who use this reagent (View=`reagent_user`). This View is generated based on the following MySQL code:
 ```
 CREATE VIEW `reagent_use` AS
