@@ -1,7 +1,7 @@
 
 ## Digital Synthesis Lab: From Excel's User Interface to MySQL Database
 <br>
-
+Paper-free laboratories in academic or industrial environments have the advantage of providing a fast, flexible, and reliable workflow of information. This is beneficial not only for accessing key pieces of documents within the research and development phase, but also for an effective management of the inventory, supply chain, and regulatory affairs.
 This work provides a simple, digital solution to keep the workflow of a synthetic chemistry laboratory in a normalized MySQL database. Laboratory users will interact with Excel sheets as the user-end to provide the daily data about the reactions, reagents as well as the users who are running the reactions. The incoming data will be extracted, transformed and loaded (ETL) to the database using two Python codes. The older rows in the Excel file could be deleted when needed to keep a lean file size, while all the information is recorded efficiently in the database. In the following, a description of the Excel files (1) as well as the ETL process, the MySQL database and its features (2) is provided:
 
 ### 1. Excel Files as the User End
