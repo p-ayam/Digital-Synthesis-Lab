@@ -1,23 +1,24 @@
 
-## Digital Synthesis Lab: From Excel's User Interface to MySQL Database 
+## Digital Synthesis Lab: From Excel's User Interface to MySQL Database
 <br>
 
-
-This work provides a simple, digital solution to keep the workflow of a synthetic chemistry laboratory in a normalized MySQL database. Laboratory users will interact with Excel sheets as the user-end to provide the data about reactions, reagents and the users. The incoming data will be extracted, transformed and loaded (ETL) on the database using two Python codes. In the following, a description of the Excel files (1) as well as the ETL process and the MySQL database (2) is provided:
+This work provides a simple, digital solution to keep the workflow of a synthetic chemistry laboratory in a normalized MySQL database. Laboratory users will interact with Excel sheets as the user-end to provide the daily data about the reactions, reagents as well as the users who are running the reactions. The incoming data will be extracted, transformed and loaded (ETL) to the database using two Python codes. The older rows in the Excel file could be deleted when needed to keep a lean file size, while all the information is recorded efficiently in the database. In the following, a description of the Excel files (1) as well as the ETL process, the MySQL database and its features (2) is provided:
 
 ### 1. Excel Files as the User End
-The assumption is that a summary of every item in the list of **Reactions**, **Reagents**, and **Users** is recorded -on the go- by the chemists in a commonly accessible Excel file (`/Data/lab.xlsx`). The file is equipped with data validation features to avoid the intake of faulty data. Here is a brief description of each sheet:
+The assumption is that a summary of every item in the list of **Reactions**, **Reagents**, and **Users** is recorded -on the go- by the chemists in a commonly accessible Excel file (`/Data/lab.xlsx`). The file is equipped with data validation features to avoid the intake of faulty data. Here is a sample of each sheet:
 
 **a)** Excel sheet **Reactions** is filled with dummy data here:
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/excel_reaction.jpg" alt="alt text" width="900" height="whatever">
 <br>
-The **Reactions** sheet contains two columns with the title "User" and "Reagent_id" that both contain
-comma-separated id-numbers from the corresponding chemists who conducted the reaction and the reagents used for the synthesis. The column "Temperature" contains values recorded in centigrades.
+ "Temperature" values are recorded in Celsius. The last two columns ("User" and "Reagent_id") contain
+comma-separated values for the id-numbers of the chemists who conducted the reaction, and the reagents used for the synthesis.
 <br>
 **b)** Excel sheet **Reagents** is filled with dummy data here:
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/excel_reagent.jpg" alt="alt text" width="630" height="whatever">
+<br>
+This information in this sheet could be helpful in inventory management, raising alarms for the chemicals that are out of their shelf life or for regulatory purposes (see section 2.2. Function (MySQL))
 <br>
 **c)** Excel sheet **Users** is filled with sample dummy data here:
 <br>
