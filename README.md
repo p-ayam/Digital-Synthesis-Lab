@@ -7,6 +7,7 @@ This work provides a simple, digital solution to keep the workflow of a syntheti
 ### 1. Excel Files as the User End
 The assumption is that a summary of every item in the list of **Reactions**, **Reagents**, and **Users** is recorded -on the go- by the chemists in a commonly accessible Excel file (`/Data/lab.xlsx`). The file is equipped with data validation features to avoid the intake of faulty data. Here is a sample of each sheet:
 <br>
+<br>
 **a)** **Reactions** Excel sheet filled with dummy data:
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/excel_reaction.jpg" alt="alt text" width="900" height="whatever">
@@ -14,11 +15,13 @@ The assumption is that a summary of every item in the list of **Reactions**, **R
 "Temperature" values are recorded in Celsius. The last two columns ("User" and "Reagent_id") contain
 comma-separated values for the id-numbers of the corresponding chemists who conducted the reaction, and the reagents used for the synthesis.
 <br>
+<br>
 **b)** **Reagents** Excel sheet filled with dummy data:
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/excel_reagent.jpg" alt="alt text" width="630" height="whatever">
 <br>
 This information in this sheet could be helpful in inventory management, raising alarms for the chemicals that are out of their shelf life, or for regulatory purposes (see section 2.2. Function (MySQL))
+<br>
 <br>
 **c)** **Users** Excel sheet filled with dummy data:
 <br>
@@ -60,7 +63,7 @@ CREATE VIEW `reagent_use` AS
     GROUP BY `chem`.`Reagent_id`
     ORDER BY `chem`.`Reagent_id`
 ```
-and the result of this simple analysis is shown in the `Overview` excel sheet as follows:
+The result of this simple analysis is shown in the `Overview` excel sheet as follows:
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/excel_overvoew1.jpg" alt="alt text" width="400" height="whatever">
 <br>
@@ -85,6 +88,7 @@ CREATE VIEW `user_metrics` AS
 The result of this simple analysis is shown in the `Overview` excel sheet as following:
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/excel_overvoew2.jpg" alt="alt text" width="700" height="whatever">
+<br>
 <br>
 **c)** The Overview sheet also shows the average number of chemical reagents that have been used in the reactions, the average total number of chemists per reaction, as well as the average temperature (in Celsius) and yield of the reactions (View=`reactions_overview`). This View is generated based on the following MySQL code:
 ```
