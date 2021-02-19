@@ -31,7 +31,7 @@ This information in this sheet could be helpful in inventory management, raising
 
 
 ### 2. ETL Process and MySQL Database
-A collection of python codes (`main.py` and `writexl.py`) **extract, transform and load (ETL)** the data between the Excel file and the MySQL database. In this process, first, the temperature values are converted from Celsius to Kelvin beofre being saved in the database. Seconnd, the comma-separated values in the two columns of the
+A collection of python codes (`main.py` and `writexl.py`) **extract, transform and load (ETL)** the data between the Excel file and the MySQL database. In this process, first, the temperature values are converted from Celsius to Kelvin beofre being saved in the database. Second, the comma-separated values in the two columns of the
 **Reactions** Excel sheet ("User", "Reagent_id") get identified and are saved separately in the database tables `reactions_users` and `reactions_reagents`. The data are then loaded to a normalized MySQL Workbench database (`laboratory.sql`) that contains 5 tables: `reaction`, `reagents`, `users`, `reactions_reagents`, `reactions_users`, with the first three having a many-to-many relationship. The database schema is the following:
 
 <img src="https://github.com/p-ayam/images/blob/main/schema.jpg" alt="alt text" width="630" height="whatever">
