@@ -3,23 +3,23 @@
 <br>
 
 
-This work aims at designing a simple, digital solution to keep the workflow of a synthetic chemistry laboratory in a normalized MySQL database, using Excel sheets as the user end, and Python libraries for extraction, transformation and loading (ETL) of the data.
+This work provides a simple, digital solution to keep the workflow of a synthetic chemistry laboratory in a normalized MySQL database. Laboratory users will interact with Excel sheets as the user-end to provide the data flow. The incoming data will be extracted, transformed and loaded (ETL) on the database using two Python codes. In the following, a description of the Excel files (1) as well as the ETL process and the MySQL database (2) is provided:
 
 ### 1. Excel Files as the User End
-The assumption is that a summary of every item in the list of **Reactions**, **Reagents**, and **Users** is recorded -on the go- by the chemists in a commonly accessible Excel file (`/Data/lab.xlsx`) like the following format (the file is equipped with data validation features to avoid the intake of faulty data):
+The assumption is that a summary of every item in the list of **Reactions**, **Reagents**, and **Users** is recorded -on the go- by the chemists in a commonly accessible Excel file (`/Data/lab.xlsx`). The file is equipped with data validation features to avoid the intake of faulty data. Here is a brief description of each sheet:
 
-Excel sheet **Reactions** filled with dummy data:
+Excel sheet **Reactions** is filled with dummy data here:
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/excel_reaction.jpg" alt="alt text" width="900" height="whatever">
 <br>
 The **Reactions** sheet contains two columns with the title "User" and "Reagent_id" that both contain
 comma-separated id-numbers from the corresponding chemists who conducted the reaction and the reagents used for the synthesis. The column "Temperature" contains values recorded in centigrades.
 <br>
-Excel sheet **Reagents** filled with dummy data:
+Excel sheet **Reagents** is filled with dummy data here:
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/excel_reagent.jpg" alt="alt text" width="630" height="whatever">
 <br>
-Excel sheet **Users** filled with sample dummy data:
+Excel sheet **Users** is filled with sample dummy data here:
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/excel_user.jpg" alt="alt text" width="630" height="whatever">
 <br>
