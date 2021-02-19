@@ -6,7 +6,7 @@ This work provides a simple, digital solution to keep the workflow of a syntheti
 
 ### 1. Excel Files as the User End
 The assumption is that a summary of every item in the list of **Reactions**, **Reagents**, and **Users** is recorded -on the go- by the chemists in a commonly accessible Excel file (`/Data/lab.xlsx`). The file is equipped with data validation features to avoid the intake of faulty data. Here is a sample of each sheet:
-
+<br>
 **a)** **Reactions** Excel sheet filled with dummy data:
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/excel_reaction.jpg" alt="alt text" width="900" height="whatever">
@@ -43,7 +43,7 @@ Additional features like View and Function are also defined for the database whi
 
 Apart from the ETL process, additional features like **Views** and **Functions** are defined for the database that allow access to a statistical overview of the
 laboratory's performance. These calculations are conducted in the MySQL database, making use of the entire dataset available from the beginning of the record-keeping. The result of these calculations is then updated and shown in the Excel file's **Overview** sheet, each time that new data is loaded to the database (refer to the `main.py` file where _Making Use of Views_ is discussed). Three pieces of information are exclusively derived from the Views:
-
+<br>
 **a)** The Overview sheet in the Excel file shows an updated total number of reactions and people that use each reagent in the lab (View=`reagent_user`). This View is generated based on the following MySQL code:
 ```
 CREATE VIEW `reagent_use` AS
