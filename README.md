@@ -20,7 +20,7 @@ comma-separated values for the id-numbers of the corresponding chemists who cond
 <br>
 <img src="https://github.com/p-ayam/images/blob/main/excel_reagent.jpg" alt="alt text" width="630" height="whatever">
 <br>
-This information in this sheet could be helpful in inventory management, raising alarms for the chemicals that are out of their shelf life, or for regulatory purposes (see section 2.2. Function (MySQL))
+This information in this sheet could be helpful in inventory management, raising alarms for the chemicals that are out of their shelf life, or for regulatory purposes (see section 2.2. here).
 <br>
 <br>
 **c)** **Users** Excel sheet filled with dummy data:
@@ -46,6 +46,7 @@ Additional features like View and Function are also defined for the database whi
 
 Apart from the ETL process, additional features like **Views** and **Functions** are defined for the database that allow access to a statistical overview of the
 laboratory's performance. These calculations are conducted in the MySQL database, making use of the entire dataset available from the beginning of the record-keeping. The result of these calculations is then updated and shown in the Excel file's **Overview** sheet, each time that new data is loaded to the database (refer to the `main.py` file where _Making Use of Views_ is discussed). Three pieces of information are exclusively derived from the Views:
+<br>
 <br>
 **a)** The Overview sheet in the Excel file shows an updated total number of reactions and people that use each reagent in the lab (View=`reagent_user`). This View is generated based on the following MySQL code:
 ```
