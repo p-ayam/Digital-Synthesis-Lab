@@ -3,7 +3,8 @@
 # Here, 'first_col' is an added feature that together with 'startrow' helps defining the exact cell in the Excel sheet where the upper left corner of the Pandas 
 # dataframe should be written in.
 
-def append_df_to_excel(filename, df, sheet_name, startrow, first_col,
+import pandas as pd
+def append_df_to_excel(filename:str, df:pd.core.frame.DataFrame , sheet_name:str, startrow:int, first_col:int,
                        truncate_sheet=False,
                        **to_excel_kwargs):
     import pandas as pd #version ==1.1.5
